@@ -2,9 +2,13 @@
 
 ## SUMMARY OF WORKFLOW TO BUILD ZEGAMI COLLECTION
 
+1. Clone the repository and cd into it. 
+
+    `git clone 
+
 1. Begin OMERO session by typing the following command into the command line.
     
-`make login`
+    `make login`
 
 2. Generate zegami.csv file from OMERO.Figure names that include Zegami.
     
