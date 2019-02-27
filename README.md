@@ -4,31 +4,43 @@
 
 1. Clone the repository and cd into it. 
 
-    `git clone 
+    `git clone https://github.com/jstitlow/Zegami_scripts`
+    
+    `cd Zegami_scripts`
+    
+2. Add environmental variables for omero and PYTHONPATH to your bash profile
 
-1. Begin OMERO session by typing the following command into the command line.
+    `nano ~/.bash_profile`
+    
+    * export OMERO="/opt/OMERO.py-5.4.8-ice36-b99/bin/omero"
+    
+    * export PYTHONPATH="/opt/OMERO.py-5.4.8-ice36-b99/lib/python/:$PYTHONPATH"
+    
+    * control + x; y
+
+3. Begin OMERO session by typing the following command into the command line.
     
     `make login`
 
-2. Generate zegami.csv file from OMERO.Figure names that include Zegami.
+4. Generate zegami.csv file from OMERO.Figure names that include Zegami.
     
     `python list-figures.py`
     
-3. Download figures as json files.
+5. Download figures as json files.
     
     `python download-figures.py /path/to/outdir /path/to/zegami.csv`
     
     * will have to delete first row because the code is looking integer values
 
-4. Convert json files to jpg for the scoring app
+6. Convert json files to jpg for the scoring app
 
     `python figure-json2jpeg.py /path/to/outdir /path/to/zegami.csv`
 
-5. Convert .jpg files to .png for Zegami. 
+7. Convert .jpg files to .png for Zegami. 
 
     `python convert_jpg2png.py`
     
-6. Add other datasets to zegami.csv file
+8. Add other datasets to zegami.csv file
 
     `python run runFlymineQueries_zegami.py #needs Py2 because of some dictionary nonsense
     
