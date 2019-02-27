@@ -25,15 +25,15 @@
       -source activate py27
 
 ## TO DO:
-*write code to merge other datasets to the zegami text file
+* write code to merge other datasets to the zegami text file
     -Davis lab sequencing data
     -Other sources
     -flymine output
     -smFISH screen annotations
 
-KNOWN ISSUES:
--zegami.csv has to be cleaned up as follows
-    -remove Maria's data and others that are mis-labelled
+## KNOWN ISSUES:
+* zegami.csv has to be cleaned up as follows
+    * remove Maria's data and others that are mis-labelled
     -remove template data
     -remove hyphens from CPTI ID numbers
     -several typos in figure_name (CPTI numbers) that make it difficult to correlate
