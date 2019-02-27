@@ -34,8 +34,7 @@ def main(dir_path, metadata_fpath):
     #metadata = open(metadata_fpath, 'r')
     conn = omero_tools.get_connection()
     conn.SERVICE_OPTS.setOmeroGroup(-1)
-    for fig_metadata in metadata:
-        next(fig_metadata)
+    for fig_metadata in metadata[1:]:
         print fig_metadata[0]
         fig_id = int(fig_metadata[0])
         gene_name = fig_metadata[1]
