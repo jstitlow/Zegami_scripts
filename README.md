@@ -3,29 +3,39 @@
 ## SUMMARY OF WORKFLOW TO BUILD ZEGAMI COLLECTION
 
 1. Begin OMERO session by typing the following command into the command line.
+    
     `make login`
 
 2. Generate zegami.csv file from OMERO.Figure names that include Zegami.
+    
     `python list-figures.py`
     
 3. Download figures as json files.
+    
     `python download-figures.py /path/to/outdir /path/to/zegami.csv`
-    -requires arguments for outdir path and metadata(zegami.csv) path
-    -will have to delete first row because the code is looking integer values
+    
+    * will have to delete first row because the code is looking integer values
 
 4. Convert json files to jpg for the scoring app
+
     `python figure-json2jpeg.py /path/to/outdir /path/to/zegami.csv`
 
 5. Convert .jpg files to .png for Zegami. 
+
     `python convert_jpg2png.py`
     
 6. Add other datasets to zegami.csv file
+
     `python run runFlymineQueries_zegami.py #needs Py2 because of some dictionary nonsense
+    
       -export PATH="/usr/people/bioc1301/miniconda3/bin:$PATH"
+      
       -source activate py27
 
 ## TO DO:
+
 * write code to merge other datasets to the zegami text file
+
     -Davis lab sequencing data
     -Other sources
     -flymine output
