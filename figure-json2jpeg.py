@@ -44,24 +44,29 @@ def main(dir_path, metadata_fpath):
                 fig_text = fh.read()
 
         fig_json = json.loads(fig_text)
-        if int(fig_json['page_count']) > 1:
-            raise RuntimeError("more than one page for figure id '%d'" % fig_id)
+        try:
+            if int(fig_json['page_count']) > 1:
+                raise RuntimeError("more than one page for figure id '%d'" % fig_id)
 
-        export_params = {
-            'Figure_JSON' : fig_text,
-            'Webclient_URI': 'https://omero1.bioch.ox.ac.uk',
-            'Export_Option' : 'TIFF', # change to jpeg
-        }
-        fig_export = TiffExport(conn, export_params,
-                                export_images=False)
-        def get_figure_file_name(page=None):
-            return os.path.join(dir_path, '%d.jpg' % fig_id)
-        fig_export.get_figure_file_name = get_figure_file_name
+            export_params = {
+                'Figure_JSON' : fig_text,
+                'Webclient_URI': 'https://omero1.bioch.ox.ac.uk',
+                'Export_Option' : 'TIFF', # change to jpeg
+            }
+            fig_export = TiffExport(conn, export_params,
+                                    export_images=False)
+            def get_figure_file_name(page=None):
+                return os.path.join(dir_path, '%d.jpg' % fig_id)
+            fig_export.get_figure_file_name = get_figure_file_name
+        except:
+            print ('issue with figure json file')
+            pass
+
         # fig_export.build_figure()
-	try:
-	    fig_export.build_figure()
-	except:
-	    print("failed to build figure '%d'" % fig_id)
+    	try:
+    	    fig_export.build_figure()
+    	except:
+    	    print("failed to build figure '%d'" % fig_id)
 
 	# Convert .pdf to .png
 	#print ("Converting .pdfs to .pngs ...")
