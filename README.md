@@ -42,7 +42,9 @@
     
 8. Populate the zegami.csv file with datasets from Intermine, Davis lab, and the literature
 
-    `python run runFlymineQueries_zegami.py 
+    `python run runFlymineQueries_zegami.py -outname -infile -query_dir -dataset_dir`
+    
+    * can add additional data by adding .csv file to dataset_dir with FBgn's in 1st column for indexing
     
     * needs Py2 because of some dictionary nonsense
     
