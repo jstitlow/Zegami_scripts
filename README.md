@@ -74,6 +74,12 @@
 
 ## KNOWN ISSUES:
 
+    ### some of the figures fail to build with the figure-json2jpeg.py script
+    
+        * can see a print-out of the failed files in the command-line output
+        
+        * would be useful to log the output
+    
     ### zegami.csv has to be cleaned up as follows
 
         * remove Maria's data and others that are mis-labelled
