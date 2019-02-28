@@ -29,7 +29,7 @@ def main(dir_path, metadata_fpath):
     conn.SERVICE_OPTS.setOmeroGroup(-1)
 
     metadata = [line.split(',') for line in open(metadata_fpath, 'r')]
-    for fig_metadata in metadata:
+    for fig_metadata in metadata[1:]:
         fig_id = int(fig_metadata[0])
 
         json_path = os.path.join(dir_path, '%d.json' % fig_id)
