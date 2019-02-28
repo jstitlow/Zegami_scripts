@@ -43,7 +43,7 @@ def main(dir_path, metadata_fpath):
         if fig is None:
             print("no object with id '%d'" % fig_id)
         fig_json = json.loads("".join(fig.getFileInChunks()))
-        print len(item_dict['fig_json'][0]['panels'])
+        print len(fig_json['panels][0])
 
         ## The gene name is in the 'title' of the figure.  The 'title'
         ## is the label of a panel with a blank image.  We want to
