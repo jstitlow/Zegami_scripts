@@ -68,6 +68,14 @@
 
 ## TO DO:
 
+* add `try` to figure-json2jpeg.py script
+
+  `File "figure-json2jpeg.py", line 47, in main
+  
+   if int(fig_json['page_count']) > 1:
+   
+   TypeError: string indices must be integers`
+
 * merge the scripts
 
 * fix dictionary issue in runFlymineQueries_zegami.py
