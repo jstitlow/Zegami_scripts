@@ -40,39 +40,36 @@
 
     `python convert_jpg2png.py`
     
-8. Add other datasets to zegami.csv file
+8. Populate the zegami.csv file with datasets from Intermine, Davis lab, and the literature
 
-    `python run runFlymineQueries_zegami.py #needs Py2 because of some dictionary nonsense
+    `python run runFlymineQueries_zegami.py 
     
-      -export PATH="/usr/people/bioc1301/miniconda3/bin:$PATH"
+    * needs Py2 because of some dictionary nonsense
+    
+    * export PATH="/usr/people/bioc1301/miniconda3/bin:$PATH"
       
-      -source activate py27
+    * source activate py27
 
 ## TO DO:
 
-* write code to merge other datasets to the zegami text file
+* merge the scripts
 
-    -Davis lab sequencing data
-    -Other sources
-    -flymine output
-    -smFISH screen annotations
+* fix dictionary issue in runFlymineQueries_zegami.py
 
 ## KNOWN ISSUES:
-* zegami.csv has to be cleaned up as follows
-    * remove Maria's data and others that are mis-labelled
-    -remove template data
-    -remove hyphens from CPTI ID numbers
-    -several typos in figure_name (CPTI numbers) that make it difficult to correlate
 
-SUMMARY OF WORKFLOW TO USE SCORING APP
--Generate image files (.jpgs) and ID table using the Zegami workflow above
--Run questionnaire.py script
-    -arguments
-        -questions path
-        -answers dir
-        -image path
+    ### zegami.csv has to be cleaned up as follows
+
+        * remove Maria's data and others that are mis-labelled
+        * remove template data
+        * remove hyphens from CPTI ID numbers
+        * several typos in figure_name (CPTI numbers) that make it difficult to correlate
+
+## SUMMARY OF WORKFLOW TO USE SCORING APP
+
+1. Generate image files (.jpgs) and ID table using the Zegami workflow above
+
+2. Run questionnaire.py script
+
+    `python questionnaire.py /path/to/questions/file /path/to/answers/dir /path/to/image/dir`
         
-20181015
-Cleaning up the code for generating Zegami databases
--list-figures.py find all of the figures in Omero labelled Zegami and parse the filenames into a .csv file
- just as the figure2zegami.py script does
