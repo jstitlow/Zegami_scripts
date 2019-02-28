@@ -42,24 +42,27 @@ def main(dir_path, metadata_fpath):
         fig = conn.getObject('FileAnnotation', fig_id)
         if fig is None:
             print("no object with id '%d'" % fig_id)
-        fig_json = json.loads("".join(fig.getFileInChunks()))
-        print len(fig_json['panels][0])
+        try:
+            fig_json = json.loads("".join(fig.getFileInChunks()))
+        except:
+            pass
 
-        ## The gene name is in the 'title' of the figure.  The 'title'
-        ## is the label of a panel with a blank image.  We want to
-        ## remove this panel so that the scoring is done blindly.
-        ## However, the same image is used in other places in the
-        ## figure to introduce text and we want to keep those.  So
-        ## only remove panels if the gene name is used in the label.
-        #panels = fig_json['panels']
-        #for i, panel in enumerate(panels):
-        #    if panel['imageId'] == BLANK_IMAGE_ID:
-        #        if any([gene_name in l['text'] for l in panel['labels']]):
-        #            panels.pop(i)
-        #            break
-        with open(os.path.join(dir_path, '%d.json' % fig_id), 'w') as fh:
-            json.dump(fig_json, fh)
-            #print fh
+            ## The gene name is in the 'title' of the figure.  The 'title'
+            ## is the label of a panel with a blank image.  We want to
+            ## remove this panel so that the scoring is done blindly.
+            ## However, the same image is used in other places in the
+            ## figure to introduce text and we want to keep those.  So
+            ## only remove panels if the gene name is used in the label.
+            #panels = fig_json['panels']
+            #for i, panel in enumerate(panels):
+            #    if panel['imageId'] == BLANK_IMAGE_ID:
+            #        if any([gene_name in l['text'] for l in panel['labels']]):
+            #            panels.pop(i)
+            #            break
+        else:
+            with open(os.path.join(dir_path, '%d.json' % fig_id), 'w') as fh:
+                json.dump(fig_json, fh)
+
 
 if __name__ == '__main__':
     main(*sys.argv[1:])

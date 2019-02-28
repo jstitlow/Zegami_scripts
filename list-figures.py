@@ -40,7 +40,7 @@ def main():
     for fig in conn.getObjects('FileAnnotation',
                                attributes={'ns': 'omero.web.figure.json'}):
         filename = fig.getFileName()
-        if 'zegami1' not in filename:
+        if 'zegami1' not in filename and 'zegami2' not in filename:
             continue
         fig_metadata = filename.split('_')
         #print fig_metadata
@@ -52,6 +52,7 @@ def main():
         Probe = ('%s' % (fig_metadata[3]))
 
         min_info = figure_id,Gene,Collection,Compartment,Probe
+	print ('extracting:', min_info)
         z.writerow(min_info)
 
 if __name__ == '__main__':
