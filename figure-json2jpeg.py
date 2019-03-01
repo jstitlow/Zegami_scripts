@@ -43,7 +43,10 @@ def main(dir_path, metadata_fpath):
                 print ("building",json_path)
                 fig_text = fh.read()
 
-        fig_json = json.loads(fig_text)
+        try:
+            fig_json = json.loads(fig_text)
+        except:
+            print ('no json file')
         try:
             if int(fig_json['page_count']) > 1:
                 raise RuntimeError("more than one page for figure id '%d'" % fig_id)
