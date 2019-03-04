@@ -94,6 +94,7 @@
         * remove template data
         * remove hyphens from CPTI ID numbers
         * several typos in figure_name (CPTI numbers) that make it difficult to correlate
+        * updated figures from same CPTI line are an issue
 
 ## SUMMARY OF WORKFLOW TO USE SCORING APP
 
