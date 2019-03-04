@@ -34,46 +34,54 @@ def main(dir_path, metadata_fpath):
 
         json_path = os.path.join(dir_path, '%d.json' % fig_id)
         jpg_path = os.path.join(dir_path, '%d.jpg' % fig_id)
-        with open(json_path, 'r') as fh:
-            if os.path.exists(jpg_path):
-                print (jpg_path,"already exists")
-                fig_text = fh.read()
-                pass
-            else:
-                print ("building",json_path)
-                fig_text = fh.read()
 
-        try:
-            fig_json = json.loads(fig_text)
-        except:
-            print ('no json file')
-        try:
-            if int(fig_json['page_count']) > 1:
-                raise RuntimeError("more than one page for figure id '%d'" % fig_id)
+        if os.path.exists(json_path):
+            with open(json_path, 'r') as fh:
 
-            export_params = {
-                'Figure_JSON' : fig_text,
-                'Webclient_URI': 'https://omero1.bioch.ox.ac.uk',
-                'Export_Option' : 'TIFF', # change to jpeg
-            }
-            fig_export = TiffExport(conn, export_params,
-                                    export_images=False)
-            def get_figure_file_name(page=None):
-                return os.path.join(dir_path, '%d.jpg' % fig_id)
-            fig_export.get_figure_file_name = get_figure_file_name
-        except:
-            print ('issue with figure json file')
+                if os.path.exists(jpg_path):
+                    print (jpg_path,"already exists")
+                    fig_text = fh.read()
+                    pass
+                else:
+                    print ("building",json_path)
+                    fig_text = fh.read()
+                try:
+                    fig_json = json.loads(fig_text)
+
+                except:
+                    print ('no json file')
+                    pass
+
+                try:
+                    if int(fig_json['page_count']) > 1:
+                        raise RuntimeError("more than one page for figure id '%d'" % fig_id)
+
+                    export_params = {
+                        'Figure_JSON' : fig_text,
+                        'Webclient_URI': 'https://omero1.bioch.ox.ac.uk',
+                        'Export_Option' : 'TIFF', # change to jpeg
+                    }
+                    fig_export = TiffExport(conn, export_params,
+                                            export_images=False)
+                    def get_figure_file_name(page=None):
+                        return os.path.join(dir_path, '%d.jpg' % fig_id)
+                    fig_export.get_figure_file_name = get_figure_file_name
+                except:
+                    print ('issue with figure json file')
+                    pass
+
+                # fig_export.build_figure()
+            	try:
+            	    fig_export.build_figure()
+
+            	except:
+            	    print("failed to build figure '%d'" % fig_id)
+        else:
             pass
 
-        # fig_export.build_figure()
-    	try:
-    	    fig_export.build_figure()
-    	except:
-    	    print("failed to build figure '%d'" % fig_id)
-
-	# Convert .pdf to .png
-	#print ("Converting .pdfs to .pngs ...")
-	#os.system('mogrify -density 400 -background white -alpha remove -format png ./*.pdf[0]')
+    	# Convert .pdf to .png
+    	#print ("Converting .pdfs to .pngs ...")
+    	#os.system('mogrify -density 400 -background white -alpha remove -format png ./*.pdf[0]')
 
 
 if __name__ == '__main__':

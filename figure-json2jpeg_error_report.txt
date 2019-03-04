@@ -1,0 +1,15 @@
+('building', 'test_fig_json2jpg_code/2112969.json')
+('building', 'test_fig_json2jpg_code/2112968.json')
+('building', 'test_fig_json2jpg_code/2112959.json')
+Transforming to VERSION 3
+('building', 'test_fig_json2jpg_code/2112958.json')
+Transforming to VERSION 3
+('building', 'test_fig_json2jpg_code/2115435.json')
+issue with figure json file
+Traceback (most recent call last):
+  File "figure-json2jpeg.py", line 87, in <module>
+    main(*sys.argv[1:])
+  File "figure-json2jpeg.py", line 40, in main
+    with open(json_path, 'r') as fh:
+IOError: [Errno 2] No such file or directory: 'test_fig_json2jpg_code/2115434.json'
+!! 03/01/19 16:00:02.588 error: communicatols
