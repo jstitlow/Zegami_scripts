@@ -42,15 +42,39 @@
     
 8. Populate the zegami.csv file with datasets from Intermine, Davis lab, and the literature
 
-    `python run runFlymineQueries_zegami.py 
+    * Requires conda environment if running on the server
+    
+    * Create conda environment from the conda_py27_clone.txt file
+    
+        `conda create --name py27 --file conda_py27_clone.txt`
+        
+    * Activate the py27 conda environment
+    
+        'conda activate py27`
+        
+    *
+    
+    `python run runFlymineQueries_zegami.py -outname -infile -query_dir -dataset_dir`
+    
+    * can add additional data by adding .csv file to dataset_dir with FBgn's in 1st column for indexing
     
     * needs Py2 because of some dictionary nonsense
     
     * export PATH="/usr/people/bioc1301/miniconda3/bin:$PATH"
       
     * source activate py27
+    
+    
 
 ## TO DO:
+
+* add `try` to figure-json2jpeg.py script
+
+  `File "figure-json2jpeg.py", line 47, in main
+  
+   if int(fig_json['page_count']) > 1:
+   
+   TypeError: string indices must be integers`
 
 * merge the scripts
 
@@ -58,6 +82,12 @@
 
 ## KNOWN ISSUES:
 
+    ### some of the figures fail to build with the figure-json2jpeg.py script
+    
+        * can see a print-out of the failed files in the command-line output
+        
+        * would be useful to log the output
+    
     ### zegami.csv has to be cleaned up as follows
 
         * remove Maria's data and others that are mis-labelled
