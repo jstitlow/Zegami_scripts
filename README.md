@@ -51,10 +51,9 @@
     * Activate the py27 conda environment
     
         'conda activate py27`
-        
-    *
+      
     
-    `python run runFlymineQueries_zegami.py -outname -infile -query_dir -dataset_dir`
+    `python runFlymineQueries_zegami.py -outname -infile -query_dir -dataset_dir`
     
     * can add additional data by adding .csv file to dataset_dir with FBgn's in 1st column for indexing
     
