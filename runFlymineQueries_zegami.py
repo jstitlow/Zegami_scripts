@@ -6,7 +6,10 @@
 #
 # For further documentation you can visit:
 #     http://intermine.readthedocs.org/en/latest/web-services/
-
+#
+# --USAGE--
+# python runFlymineQueries_zegami.py -outname zegami.tsv -infile zegami.csv -query_dir testQueries -dataset_dir Zegami_datasets
+#
 # TODO
 # -write code for the following:
 #   -axonseq data
