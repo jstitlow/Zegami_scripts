@@ -40,7 +40,11 @@ outdir = ('/usr/people/bioc1301/src/Zegami_scripts/Zegami_collection_May_2019')
 zegami_csv = ('zegami.csv')
 logging.basicConfig(filename='zegami.log',level=logging.DEBUG)
 
-# Initialise OMERO
+# specify a list of figureIDs and outdir
+figure_IDs = '/usr/people/bioc1301/src/OMERO_scripts/fig_IDs.csv'
+figure_IDs = open(figure_IDs).read().splitlines()
+
+# BlitzGateway details to initialise OMERO
 PASS = getpass.getpass("Enter Password:")
 conn = BlitzGateway('bioc1301', PASS,
         host='omero1.bioch.ox.ac.uk', port=4064, group='davisgroup')
@@ -55,20 +59,24 @@ def list_figures():
 
     for fig in conn.getObjects('FileAnnotation',
             attributes={'ns': 'omero.web.figure.json'}):
-        filename = fig.getFileName()
-        if 'zegami1' not in filename and 'zegami2' not in filename:
-            continue
-        fig_metadata = filename.split('_')
         figure_id = ('%d' % (fig.getId()))
-        Gene = ('%s' % (fig_metadata[0]))
-        Collection = ('%s' % (fig_metadata[1]))
-        Compartment = ('%s' % (fig_metadata[2]))
-        Probe = ('%s' % (fig_metadata[3]))
-        min_info = figure_id,Gene,Collection,Compartment,Probe
-        print ('extracting:', min_info)
-        logging.debug(('extracting:', min_info))
-        z.writerow(min_info)
-
+	if figure_id in figure_IDs:
+		filename = fig.getFileName()
+        #if 'zegami1' not in filename and 'zegami2' not in filename:
+        #if 'zegami1' not in filename:
+	#    continue
+        	fig_metadata = filename.split('_')
+        	#figure_id = ('%d' % (fig.getId()))
+        	Gene = ('%s' % (fig_metadata[0]))
+        	Collection = ('%s' % (fig_metadata[1]))
+        	Compartment = ('%s' % (fig_metadata[2]))
+        	Probe = ('%s' % (fig_metadata[3]))
+        	min_info = figure_id,Gene,Collection,Compartment,Probe
+        	print ('extracting:', min_info)
+        	logging.debug(('extracting:', min_info))
+        	z.writerow(min_info)
+	else:
+		print('failed to extract' figure_id) 
 # download OMEROfigure json files and build jpgs
 def figure_json_to_jpg():
 
