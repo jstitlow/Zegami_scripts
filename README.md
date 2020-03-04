@@ -12,9 +12,11 @@
 
     `nano ~/.bash_profile`
     
-    * export OMERO="/opt/OMERO.py-5.4.8-ice36-b99/bin/omero"
+    * export OMERO="/opt/OMERO.py-5.4.10-ice36-b105/bin/omero"
     
-    * export PYTHONPATH="/opt/OMERO.py-5.4.8-ice36-b99/lib/python/:$PYTHONPATH"
+    * export HOST="omero1.bioch.ox.ac.uk"
+    
+    * export PYTHONPATH="/opt/OMERO.py-5.4.10-ice36-b105/lib/python/:$PYTHONPATH"
     
     * control + x; y
 
