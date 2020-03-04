@@ -6,7 +6,10 @@
 #
 # For further documentation you can visit:
 #     http://intermine.readthedocs.org/en/latest/web-services/
-
+#
+# --USAGE--
+# python runFlymineQueries_zegami.py -outname zegami.tsv -infile zegami.csv -query_dir testQueries -dataset_dir Zegami_datasets
+#
 # TODO
 # -write code for the following:
 #   -axonseq data
@@ -121,7 +124,7 @@ def main(argList):
     #left = pd.read_csv(args.infile)
     right = pd.read_csv(flyline_file)
     zegami_df = pd.merge(zegami_df, right, how='outer', on=['Collection'])
-    zegami_df= zegami_df.drop(columns=['Gene_x'])
+    #zegami_df= zegami_df.drop(columns=['Gene_x'])
     zegami_df= zegami_df.rename(index=str, columns={"Gene_y": "Gene"})
 
     #add other datasets to Zegami.tsv
@@ -149,7 +152,7 @@ def main(argList):
 
         zegami_df[thisquery.qname]=zegami_df['Flybase_ID'].map(query_data)
 
-    zegami_df.to_csv('%s.tsv' % args.outname, sep='\t', index=False)
+    zegami_df.to_csv('%s' % args.outname, sep='\t', index=False)
 
 if __name__=='__main__':
     main(sys.argv[1:])
