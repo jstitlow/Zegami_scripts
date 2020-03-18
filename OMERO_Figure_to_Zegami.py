@@ -104,8 +104,8 @@ def list_figures_csv():
 def figure_json_to_jpg():
 
     # get OMERO.FigureIDs
-    figure_IDs = pd.read_csv(zegami_csv, header=0)
-    figure_IDs = figure_IDs['figure_id']
+#    figure_IDs = pd.read_csv(zegami_csv, header=0)
+#    figure_IDs = figure_IDs['figure_id']
 
     for fig_ID in figure_IDs:
         try:
